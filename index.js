@@ -11,6 +11,22 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+
+app.delete('/api/movies/:id', (req, res) => {
+  const idMovie = req.params.id;
+  connection.query('DELETE FROM employee WHERE id = ?', [idMovie], err => {
+
+    if (err) {
+      console.log(err);
+      res.status(500).send("Erreur lors de la suppression d'un film");
+    } else {
+
+      res.sendStatus(200);
+    }
+  });
+});
+
+
 // écoute de l'url "/api/employees"
 app.put('/api/movies/:id', (req, res) => {
 
